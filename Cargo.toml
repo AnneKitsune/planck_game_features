@@ -1,0 +1,13 @@
+[package]
+name = "planck_game_features"
+version = "0.1.0"
+authors = ["jojolepro <jojolepro@jojolepro.com>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+planck_ecs = "1.2.0"
+planck_ecs_bundle = "1.1.0"
+game_features = "0.8.1"
+game_clock = "1.1.1"
