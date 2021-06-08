@@ -33,17 +33,53 @@ mod tests {
         let mut sys = apply_effector_system::<Stats, Effectors>.system();
         sys.initialize(&mut world);
 
-        world.get_mut_or_default::<EffectorDefinitions<Stats, Effectors>>()
-            .defs.insert(Effectors::E, EffectorDefinition::new(Effectors::E, None, vec![(Stats::S, EffectorType::AdditiveMultiplier(1.0))]));
+        world
+            .get_mut_or_default::<EffectorDefinitions<Stats, Effectors>>()
+            .defs
+            .insert(
+                Effectors::E,
+                EffectorDefinition::new(
+                    Effectors::E,
+                    None,
+                    vec![(Stats::S, EffectorType::AdditiveMultiplier(1.0))],
+                ),
+            );
 
         let entity = world.get_mut_or_default::<Entities>().create();
-        world.get_mut_or_default::<Components<EffectorSet<Effectors>>>().insert(entity, EffectorSet::new(vec![EffectorInstance::new(Effectors::E, None)]));
+        world
+            .get_mut_or_default::<Components<EffectorSet<Effectors>>>()
+            .insert(
+                entity,
+                EffectorSet::new(vec![EffectorInstance::new(Effectors::E, None)]),
+            );
         let mut statset = std::collections::HashMap::new();
         statset.insert(Stats::S, StatInstance::new(Stats::S, 1.0));
-        world.get_mut_or_default::<Components<StatSet<Stats>>>().insert(entity, StatSet::new(statset));
+        world
+            .get_mut_or_default::<Components<StatSet<Stats>>>()
+            .insert(entity, StatSet::new(statset));
 
         sys.run(&mut world).unwrap();
-        assert_eq!(world.get_mut_or_default::<Components<StatSet<Stats>>>().get(entity).unwrap().stats.get(&Stats::S).unwrap().value, 1.0);
-        assert_eq!(world.get_mut_or_default::<Components<StatSet<Stats>>>().get(entity).unwrap().stats.get(&Stats::S).unwrap().value_with_effectors, 2.0);
+        assert_eq!(
+            world
+                .get_mut_or_default::<Components<StatSet<Stats>>>()
+                .get(entity)
+                .unwrap()
+                .stats
+                .get(&Stats::S)
+                .unwrap()
+                .value,
+            1.0
+        );
+        assert_eq!(
+            world
+                .get_mut_or_default::<Components<StatSet<Stats>>>()
+                .get(entity)
+                .unwrap()
+                .stats
+                .get(&Stats::S)
+                .unwrap()
+                .value_with_effectors,
+            2.0
+        );
     }
 }

@@ -1,14 +1,13 @@
+use game_clock::*;
+use game_features::*;
 use planck_ecs::*;
 use planck_ecs_bundle::*;
-use game_features::*;
-use game_clock::*;
 
 use std::hash::Hash;
 
-mod systems;
-mod event;
 mod bundle;
-pub use self::systems::*;
+mod event;
+mod systems;
 pub use self::bundle::*;
 pub use self::event::*;
-
+pub use self::systems::*;

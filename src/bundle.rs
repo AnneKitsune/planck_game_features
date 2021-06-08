@@ -14,13 +14,14 @@ pub struct GameFeaturesSystemBundle<S, E, I, K, ST = (), U = ()> {
 }
 
 impl<
-    S: Eq + Hash + Send + Sync + 'static + Clone,
-    E: Eq + Hash + Send + Sync + 'static + Clone,
-    I: Eq + Hash + Send + Sync + 'static + Clone + Debug,
-    K: Eq + Hash + Send + Sync + 'static + Debug,
-    ST: Eq + Hash + Send + Sync + 'static + SlotType,
-    U: Eq + Hash + Send + Sync + 'static + Clone + Debug + Default,
-> Bundle for GameFeaturesSystemBundle<S, E, I, K, ST, U> {
+        S: Eq + Hash + Send + Sync + 'static + Clone,
+        E: Eq + Hash + Send + Sync + 'static + Clone,
+        I: Eq + Hash + Send + Sync + 'static + Clone + Debug,
+        K: Eq + Hash + Send + Sync + 'static + Debug,
+        ST: Eq + Hash + Send + Sync + 'static + SlotType,
+        U: Eq + Hash + Send + Sync + 'static + Clone + Debug + Default,
+    > Bundle for GameFeaturesSystemBundle<S, E, I, K, ST, U>
+{
     fn systems() -> Vec<System> {
         vec![
             apply_effector_system::<S, E>.system(),
@@ -50,4 +51,3 @@ mod tests {
         let _ = GameFeaturesSystemBundle::<Stats, Effectors, Skills, Items>::systems();
     }
 }
-
