@@ -34,7 +34,7 @@ mod tests {
         sys.initialize(&mut world);
 
         world.get_mut_or_default::<EffectorDefinitions<Stats, Effectors>>()
-            .defs.insert(Effectors::E, EffectorDefinition::new(Effectors::E, None, vec![(Stats::S, EffectorType::AdditiveMultiplier(2.0))]));
+            .defs.insert(Effectors::E, EffectorDefinition::new(Effectors::E, None, vec![(Stats::S, EffectorType::AdditiveMultiplier(1.0))]));
 
         let entity = world.get_mut_or_default::<Entities>().create();
         world.get_mut_or_default::<Components<EffectorSet<Effectors>>>().insert(entity, EffectorSet::new(vec![EffectorInstance::new(Effectors::E, None)]));
