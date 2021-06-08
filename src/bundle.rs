@@ -9,7 +9,7 @@ use std::fmt::Debug;
 /// - K: Skill
 /// - ST: Inventory SlotTypes. Defaults to `()`.
 /// - U: User ItemInstance Data. Defaults to `()`.
-pub struct GameFeatureSystemBundle<S, E, I, K, ST = (), U = ()> {
+pub struct GameFeaturesSystemBundle<S, E, I, K, ST = (), U = ()> {
     _phantom: std::marker::PhantomData<(S, E, I, K, ST, U)>,
 }
 
@@ -20,7 +20,7 @@ impl<
     K: Eq + Hash + Send + Sync + 'static + Debug,
     ST: Eq + Hash + Send + Sync + 'static + SlotType,
     U: Eq + Hash + Send + Sync + 'static + Clone + Debug + Default,
-> Bundle for GameFeatureSystemBundle<S, E, I, K, ST, U> {
+> Bundle for GameFeaturesSystemBundle<S, E, I, K, ST, U> {
     fn systems() -> Vec<System> {
         vec![
             apply_effector_system::<S, E>.system(),
