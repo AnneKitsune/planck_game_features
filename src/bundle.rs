@@ -47,7 +47,7 @@ mod tests {
 
     #[test]
     fn can_generate_systems() {
-        let _ = GameFeatureSystemBundle::<Stats, Effectors, Skills, Items>::systems();
+        let _ = GameFeaturesSystemBundle::<Stats, Effectors, Skills, Items>::systems();
     }
 }
 
